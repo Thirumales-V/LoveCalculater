@@ -122,34 +122,34 @@
     <!-- Script to Generate Floating Hearts -->
     <script>
         // Function to generate floating hearts
-        function generateFloatingHearts() {
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement("div");
-                heart.className = "heart";
+        // function generateFloatingHearts() {
+        //     for (let i = 0; i < 20; i++) {
+        //         const heart = document.createElement("div");
+        //         heart.className = "heart";
 
-                // Randomize position and animation duration
-                const size = Math.random() * 20 + 10; // Random size between 10px and 30px
-                heart.style.width = `${size}px`;
-                heart.style.height = `${size}px`;
+        //         // Randomize position and animation duration
+        //         const size = Math.random() * 20 + 10; // Random size between 10px and 30px
+        //         heart.style.width = `${size}px`;
+        //         heart.style.height = `${size}px`;
 
-                const xPosition = Math.random() * 100; // Random horizontal position
-                heart.style.left = `${xPosition}vw`;
+        //         const xPosition = Math.random() * 100; // Random horizontal position
+        //         heart.style.left = `${xPosition}vw`;
 
-                const duration = Math.random() * 5 + 5; // Random duration between 5s and 10s
-                heart.style.animationDuration = `${duration}s`;
+        //         const duration = Math.random() * 5 + 5; // Random duration between 5s and 10s
+        //         heart.style.animationDuration = `${duration}s`;
 
-                document.body.appendChild(heart);
+        //         document.body.appendChild(heart);
 
-                // Remove heart after animation ends
-                heart.addEventListener("animationend", () => heart.remove());
-            }
+        //         // Remove heart after animation ends
+        //         heart.addEventListener("animationend", () => heart.remove());
+        //     }
 
-            // Repeat generation
-            setTimeout(generateFloatingHearts, 2000);
-        }
+        //     // Repeat generation
+        //     setTimeout(generateFloatingHearts, 2000);
+        // }
 
-        // Call the function on page load
-        generateFloatingHearts();
+        // // Call the function on page load
+        // generateFloatingHearts();
 
         // Love Calculator Logic
         function calculateLove() {
