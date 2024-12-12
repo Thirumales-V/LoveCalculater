@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe4e1;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden; /* To ensure floating hearts stay within view */
+            margin: 0;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px #ff1493;
+            z-index: 2;
+            position: relative;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: #ff1493;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            margin: 10px 0;
+            width: 250px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #dc143c;
+            font-weight: bold;
+        }
+
+        /* Floating Hearts Styling */
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff69b4;
+            transform: rotate(-45deg);
+            animation: float 10s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -15px;
+        }
+
+        /* Heart Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-200px) translateX(50px) rotate(-45deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-400px) translateX(-50px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Love Calculator</h1>
+    <label for="yourName">Enter Your Name:</label>
+    <input type="text" id="yourName" placeholder="Your name">
+    <br><br>
+    <label for="crushName">Enter Your Crush's Name:</label>
+    <input type="text" id="crushName" placeholder="Your crush's name">
+    <br><br>
+    <button onclick="calculateLove()">Calculate Love</button>
+    <p id="result"></p>
+
+    <!-- Script to Generate Floating Hearts -->
+    <script>
+        // Function to generate floating hearts
+        function generateFloatingHearts() {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+
+                // Randomize position and animation duration
+                const size = Math.random() * 20 + 10; // Random size between 10px and 30px
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+
+                const xPosition = Math.random() * 100; // Random horizontal position
+                heart.style.left = `${xPosition}vw`;
+
+                const duration = Math.random() * 5 + 5; // Random duration between 5s and 10s
+                heart.style.animationDuration = `${duration}s`;
+
+                document.body.appendChild(heart);
+
+                // Remove heart after animation ends
+                heart.addEventListener("animationend", () => heart.remove());
+            }
+
+            // Repeat generation
+            setTimeout(generateFloatingHearts, 2000);
+        }
+
+        // Call the function on page load
+        generateFloatingHearts();
+
+        // Love Calculator Logic
+        function calculateLove() {
+            // Get values from input fields
+            const yourName = document.getElementById("yourName").value.trim();
+            const crushName = document.getElementById("crushName").value.trim();
+
+            // Check if the inputs are empty
+            if (!yourName || !crushName) {
+                document.getElementById("result").textContent = "Please enter both names.";
+                return;
+            }
+
+            // Initialize love score
+            let loveScore;
+
+            // Special logic for specific names
+            if (
+                yourName.toLowerCase() === "thiru" || 
+                crushName.toLowerCase() === "thiru" || 
+                yourName.toLowerCase() === "thirumalesh" || 
+                crushName.toLowerCase() === "thirumalesh"
+            ) {
+                loveScore = 100;
+            } else {
+                // Generate a random score below 10
+                loveScore = Math.floor(Math.random() * 10);
+            }
+
+            // Display the result
+            document.getElementById("result").textContent = `Love score between ${yourName} and ${crushName} is: ${loveScore}%`;
+        }
+    </script>
+</body>
+</html>
